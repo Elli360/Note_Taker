@@ -2,7 +2,8 @@ const express = require("express");
 const db = require("./db/db.json");
 const fs = require("fs");
 const path = require("path");
-const routes = require("./routes/htmlRoutes.js")
+const routes = require("./routes/htmlRoutes.js");
+const apiRoutes = require("./routes/apiRoutes.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use("/", routes);
+// app.use("/", apiRoutes);
+apiRoutes(app)
 
 app.listen(PORT, () => console.log(` listening on ${PORT}`));
 
